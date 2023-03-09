@@ -1,0 +1,1291 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thien-Lam Vo</title>
+
+    <!-- Tab Icon -->
+    <link rel="icon" type="image/jpg" href="images/main.jpg" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <style>
+        /* General Styling */
+        :root {
+            --colorBlack: rgb(20, 20, 20);
+            --colorLightblack: rgb(31, 31, 31);
+            --colorBlue: rgb(61, 90, 128);
+            --colorOrange: rgb(242, 208, 169);
+            --colorPink: rgb(230, 170, 206);
+            --colorRed: rgb(190, 52, 85);
+            --font1: 'Libre Franklin', sans-serif;
+            --font2: 'Rubik', sans-serif;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            position: relative;
+            background-color: var(--colorLightblack);
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            min-width: 100%;
+            overflow: hidden;
+        }
+
+        h1, h2, h3, h4, h5, ul, li, p, button {
+            background-color: var(--colorLightblack);
+            color: var(--colorOrange);
+            font-family: var(--font1);
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            font-size: 1rem;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+        }
+        p {
+            font-size: 1rem;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Cleaning up links*/
+        a, a:link, a:visited, a:hover, a:active {
+            color: var(--colorRed);
+            text-decoration: none;
+        }
+
+        /* Text not to be highlighted */
+        .no-select {
+            user-select: none;
+        }
+
+        /* Nav and footer bars */
+        nav, footer {
+            font-family: var(--font1);
+            display: flex;
+            flex-flow: row wrap;
+            gap: 0;
+            height: 20vh;
+        }
+
+        /* Each section in nav bar*/
+        .nav-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 1st nav section */
+        #nav-home {
+            font-size: 1.5rem;
+            width: 50%;
+            border-right: 1px solid var(--colorBlue);
+            border-bottom: 1px solid var(--colorBlue);
+        }
+
+        /* 2rd nav section */
+        #nav-experience {
+            display: none;
+            border-bottom: 1px solid var(--colorBlue);
+        }
+
+        /* 3nd nav section only for smaller screens */
+        #hamburgerIcon {
+            width: 50%;
+            color: var(--colorBlue);
+            border-bottom: 1px solid var(--colorBlue);
+            z-index: 1;
+        }
+
+            /* Hamburger icon sizing */
+            #hamburgerIcon > a > i {
+                font-size: 2rem;
+            }
+
+        .hamburgerCircle {
+            position: absolute;
+            border-radius: 100%;
+            min-height: 1rem;
+            min-width: 1rem;
+            background-color: var(--colorLightblack);
+            border: 0px solid var(--colorLightblack);
+            transition: border 0.5s linear;
+            z-index: -2;
+        }
+
+        .expandMotion {
+            border-width: 100rem;
+        }
+
+        /* 4th nav section */
+        #nav-space {
+            display: none;
+        }
+
+        /* Animated moving bar */
+        .horizontalBar {
+            width: 0%;
+            height: 4px;
+            background-color: var(--colorBlue);
+            transition: linear 0.25s;
+            margin-bottom: 3px;
+        }
+
+        /* Main content section */
+        main {
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hamburgerMenu {
+            width: 100%;
+            position: absolute;
+            z-index: 2;
+            top: 10vh;
+            transform: translateX(-100%);
+        }
+
+        .hamburgerMenuItems {
+            display: block;
+            padding: 2rem;
+            transform: translateX(-100%);
+            text-align: center;
+        }
+
+        @keyframes menuMoveIn {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        /* Each page for main content */
+        main > section {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            transition: transform linear 0.25s;
+        }
+
+        /* Main page 1 HOME content */
+        #mainPage1 {
+            height: 100%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 10fr) minmax(0, 1fr);
+            grid-template-rows: minmax(0, 4fr) minmax(0, 1fr) minmax(0, 1fr);
+            text-align: center;
+        }
+
+        #cover-image {
+            object-fit: fill;
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 1;
+            justify-self: center;
+            align-self: center;
+            max-height: 100%;
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        #introduction {
+            grid-column: 2 / span 1;
+            grid-row: 2 / span 1;
+        }
+        #welcome {
+            grid-column: 2 / span 1;
+            grid-row: 3 / span 1;
+        }
+
+        /* Main page 2 ABOUT content */
+        #mainPage2 {
+            text-align: left;
+            grid-column: 2 / span 1;
+            grid-row: 2 / span 2;
+            height: 100%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+            grid-template-rows: minmax(0, 1fr) minmax(0, 10fr);
+        }
+
+        .aboutButtons {
+            border: none;
+            cursor: pointer;
+        }
+
+        #aboutButton1 {
+            grid-column: 1 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        #aboutButton2 {
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        #aboutButton3 {
+            grid-column: 3 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        .about-content {
+            display: none;
+            text-decoration: none;
+        }
+
+        .buttonActive {
+            background-color: var(--colorBlack);
+        }
+
+        .show-about-content {
+            grid-column: 1 / span 6;
+            grid-row: 2 / span 1;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+        }
+
+
+        /* Main page 3 EXPERIENCE content */
+        #mainPage3 {
+            text-align: center;
+            grid-column: 2 / span 1;
+            grid-row: 2 / span 2;
+            height: 100%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+            grid-template-rows: minmax(0, 1fr) minmax(0, 8fr);
+        }
+
+        #expDropdown1 > ul {
+            columns: 2;
+            list-style-type: none;
+            height: 100%;
+            width: 100%;
+        }
+
+        #expDropdown1 > ul > li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 25%;
+            width: 100%;
+        }
+
+        .expButtons {
+            border: none;
+            cursor: pointer;
+        }
+
+        #expButton1 {
+            grid-column: 1 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        #expButton2 {
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        #expButton3 {
+            grid-column: 3 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        .exp-content {
+            display: none;
+            text-align: center;
+            z-index: 1;
+            text-decoration: none;
+        }
+
+        .show-exp-content {
+            grid-column: 1 / span 3;
+            grid-row: 2 / span 1;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+        }
+
+        /* Main page 4 ME content */
+        #mainPage4 {
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+            grid-template-rows: minmax(0, 1fr) minmax(0, 8fr);
+        }
+        .meButtons {
+            border: none;
+            cursor: pointer;
+        }
+
+        #meButton1 {
+            grid-column: 1 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        #meButton2 {
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        #meButton3 {
+            grid-column: 3 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        #meButton4 {
+            grid-column: 4 / span 1;
+            grid-row: 1 / span 1;
+        }
+
+        .me-content {
+            display: none;
+            text-align: center;
+            z-index: 1;
+            text-decoration: none;
+        }
+
+        #meDropdown1 {
+            grid-column: 1 / span 4;
+            grid-row: 2 / span 1;
+        }
+
+        #meDropdown2 {
+            grid-column: 1 / span 4;
+            grid-row: 2 / span 1;
+        }
+
+        #meDropdown3 {
+            grid-column: 1 / span 4;
+            grid-row: 2 / span 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            grid-template-rows: minmax(0, 1fr);
+        }
+
+        .photo-caption {
+            grid-column: 1 / span 1;
+            grid-row: 1 / span 1;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+        }
+
+        .photo-gallery {
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 1;
+            justify-self: center;
+            align-self: center;
+        }
+
+        .photographyImages {
+            object-fit: contain;
+            max-height: 100%;
+            width: 100%;
+            display: none;
+        }
+
+        .display-photo {
+            display: block;
+        }
+
+        #meDropdown4 {
+            grid-column: 1 / span 4;
+            grid-row: 2 / span 1;
+        }
+
+        .show-me-content {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+        }
+
+            /* Animation for switching pages*/
+            main > section[data-status="inactive"] {
+                transform: translateX(-200%);
+                transition: none;
+            }
+
+            main > section[data-status="active"] {
+                transform: translateX(0%);
+            }
+
+            main > section[data-status="before"] {
+                transform: translateX(200%);
+            }
+
+            main > section[data-status="after"] {
+                transform: translateX(-200%);
+            }
+
+            main > section[data-status="becoming-active-from-before"] {
+                transform: translateX(200%);
+                transition: none;
+            }
+
+            main > section[data-status="becoming-active-from-after"] {
+                transform: translateX(-200%);
+                transition: none;
+            }
+
+        /* Footer section */
+        .footer-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Footer icons */
+        footer > div > button > i {
+            font-size: 3rem;
+        }
+        /* 1st footer section */
+        .sectionLeft {
+            flex-grow: 1;
+        }
+        /* 2nd footer section */
+        .sectionFooter {
+            order: -1;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* For hiding footer for mobile devices */
+        .sectionFooter {
+            display: none;
+        }
+
+        /* 3rd footer section */
+        .sectionRight {
+            flex-grow: 1;
+        }
+
+        /* Left and Right buttons */
+        footer > div > button {
+            padding: 0;
+            border: none;
+            background: none;
+            color: var(--colorOrange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        @media screen and (min-height: 600px) {
+            #nav-space {
+                display: flex;
+                flex-grow: 1;
+                justify-content: center;
+            }
+        }
+
+        @media screen and (min-width: 600px) {
+            #nav-home {
+                width: calc(100%/3);
+            }
+
+            #nav-experience {
+                display: flex;
+                justify-content: space-evenly;
+                width: calc(100%/3*2);
+            }
+
+            #hamburgerIcon {
+                display: none;
+                transform: translateX(-200%);
+            }
+
+            .footer-section {
+                flex-grow: 0;
+                width: calc(100% / 3);
+            }
+
+            footer > div > button > i {
+                font-size: 4rem;
+            }
+
+            .sectionFooter {
+                display: flex;
+            }
+
+            .sectionFooter {
+                order: 0;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            #introduction {
+                font-size: 2rem;    
+            }
+            #welcome {
+                font-size: 1.5rem; 
+            }
+            ul, li {
+                font-size: 1rem;
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+            }
+            p {
+                font-size: 1rem;
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+                padding-left: 8rem;
+                padding-right: 8rem;
+            }
+            .photo-caption > p {
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        @media screen and (min-width: 600px) and (min-height: 700px) {
+            p {
+                font-size: 1.5rem;
+            }
+            ul, li {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            #nav-home > a > h2 span {
+                display: none;
+            }
+
+            #nav-home > a > h2:after {
+                visibility: visible;
+                content: "Thien-Lam Vo";
+                font-size: 1.5rem;
+            }
+
+            #nav-home {
+                border-radius: 0 0 5px 0;
+            }
+
+            #nav-experience {
+                order: 2;
+                width: calc(100% / 3);
+                border-left: 1px solid var(--colorBlue);
+                border-radius: 0 0 0 5px;
+            }
+
+            #nav-space {
+                display: flex;
+                flex-grow: 1;
+                justify-content: center;
+                order: 1;
+                width: calc(100% / 3);
+            }
+
+            .nav-section {
+                width: calc(100% / 3);
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            #introduction {
+                font-size: 3rem;
+            }
+
+            #welcome {
+                font-size: 1.5rem;
+            }
+
+            h4 {
+                font-size: 1.5rem;
+            }
+
+            main > section > div > button {
+                font-size: 1rem;
+            }
+
+            ul, li {
+                font-size: 1.5rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+
+            p {
+                font-size: 1.5rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                padding-left: 8rem;
+                padding-right: 8rem;
+            }
+
+            .photo-caption > p {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+
+            footer > div > button > i {
+                font-size: 6rem;
+            }
+
+
+        }
+
+
+        @media screen and (min-width: 1600px) {
+            #nav-home > a > h2:after {
+                font-size: 3rem;
+            }
+
+            h1 {
+                font-size: 4rem;
+            }
+
+            #introduction {
+                font-size: 4rem;
+            }
+
+            #welcome {
+                font-size: 2rem;
+            }
+
+            h4 {
+                font-size: 2rem;
+            }
+
+            main > section > div > button {
+                font-size: 1.5rem;
+            }
+
+            ul, li {
+                font-size: 2rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+
+            p {
+                font-size: 2rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                padding-left: 16rem;
+                padding-right: 16rem;
+            }
+
+            .photo-caption > p {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+            footer > div > button > i {
+                font-size: 8rem;
+            }
+        }
+        /*
+        section {
+            display: grid;
+            place-items: center;
+            align-content: center;
+            min-height: 100vh;
+        }
+
+        .logos {
+            display: flex;
+        }
+
+        .logo {
+            border-radius: 10%;
+            max-height: 20vh;
+            max-width: 20vh;
+            padding: 1rem;
+            margin: 0 0.5rem;
+        }
+
+        .logo > img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+
+        .logo:nth-child(2) {
+            transition-delay: 200ms;
+        }
+
+        .logo:nth-child(3) {
+            transition-delay: 400ms;
+        }
+
+        .logo:nth-child(4) {
+            transition-delay: 600ms;
+        }
+
+        .hidden {
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateX(-100%);
+            transition: all 1s;
+        }
+
+        .show {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateX(0);
+        }
+        */
+    </style>
+
+    <!-- JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT -->
+    <script>
+        "use strict";
+
+
+        const openNav = () => {
+            const burgerIcon = document.getElementById("hamburgerCircle");
+            const tabsToPrint = document.querySelectorAll(".hamburgerMenuItems");
+            if (burgerIcon.className === "hamburgerCircle") {
+                burgerIcon.className += " expandMotion";
+            } else {
+                burgerIcon.className = "hamburgerCircle";
+            }
+            for (let i = 0; i < tabsToPrint.length; i++) {
+                if (tabsToPrint[i].style.animation) {
+                    tabsToPrint[i].style.animation = "";
+                } else {
+                    tabsToPrint[i].style.animation += `menuMoveIn 0.5s ease forwards ${0.1 * (i + 1)}s`;
+                }
+            }
+        }
+
+        const navClick = (navElement) => {
+            const navButton = navElement.getAttribute("data-nav-type");
+            if (navButton == "home") {
+                handleNav(0);
+            } else if (navButton == "about") {
+                handleNav(1);
+            } else if (navButton == "experience") {
+                handleNav(2);
+            } else if (navButton == "me") {
+                handleNav(3);
+            }
+            if (navElement.getAttribute("data-hamburger")) {
+                openNav();
+            }
+            setLocation();
+        };
+
+        const setLocation = () => {
+            const buttons = document.querySelectorAll("footer>div>button");
+            let activeIndex = parseInt(buttons[0].getAttribute("data-currentpage"), 10);
+            let location = document.querySelector(".you-are-here");
+            if (activeIndex == 0) {
+                location.innerHTML = "HOME";
+            } else if (activeIndex == 1) {
+                location.innerHTML = "ABOUT";
+            } else if (activeIndex == 2) {
+                location.innerHTML = "EXPERIENCE";
+            } else {
+                location.innerHTML = "ME";
+            }
+        }
+
+        const handleNav = (ind) => {
+            const buttons = document.querySelectorAll("footer>div>button");
+            let activeIndex = parseInt(buttons[0].getAttribute("data-currentpage"), 10);
+            const pages = document.getElementsByTagName("section");
+            const currentPage = document.querySelector(`[data-index="${activeIndex}"]`);
+            let nextIndex = parseInt(ind);
+            if (activeIndex > nextIndex) {
+                const nextPage = document.querySelector(`[data-index="${nextIndex}"]`);
+                currentPage.dataset.status = "after";
+                nextPage.dataset.status = "becoming-active-from-before";
+                setTimeout(() => {
+                    nextPage.dataset.status = "active";
+                    activeIndex = nextIndex;
+                });
+            } else if (activeIndex < nextIndex) {
+                const nextPage = document.querySelector(`[data-index="${nextIndex}"]`);
+                currentPage.dataset.status = "before";
+                nextPage.dataset.status = "becoming-active-from-after";
+                setTimeout(() => {
+                    nextPage.dataset.status = "active";
+                    activeIndex = nextIndex;
+                });
+            }
+            buttons[0].dataset.currentpage = nextIndex;
+            buttons[1].dataset.currentpage = nextIndex;
+            const bar = document.querySelector(".horizontalBar");
+            const newBarWidth = nextIndex / (pages.length - 1) * 100;
+            bar.style.width = newBarWidth + "%";
+            setLocation();
+        }
+
+        const handleButtons = (button) => {
+            const buttons = document.querySelectorAll("footer>div>button");
+            let activeIndex = parseInt(buttons[0].getAttribute("data-currentpage"), 10);
+            const pages = document.getElementsByTagName("section");
+            const currentPage = document.querySelector(`[data-index="${activeIndex}"]`);
+            let nextIndex;
+            if (typeof button == "object") {
+                const buttonDirection = button.getAttribute("data-direction");
+                if (buttonDirection == "left") {
+                    nextIndex = activeIndex - 1 >= 0 ? activeIndex - 1 : pages.length - 1;
+                    const nextPage = document.querySelector(`[data-index="${nextIndex}"]`);
+                    currentPage.dataset.status = "after";
+                    nextPage.dataset.status = "becoming-active-from-before";
+                    setTimeout(() => {
+                        nextPage.dataset.status = "active";
+                        activeIndex = nextIndex;
+                    });
+                } else if (buttonDirection == "right") {
+                    nextIndex = activeIndex + 1 <= pages.length - 1 ? activeIndex + 1 : 0;
+                    const nextPage = document.querySelector(`[data-index="${nextIndex}"]`);
+                    currentPage.dataset.status = "before";
+                    nextPage.dataset.status = "becoming-active-from-after";
+                    setTimeout(() => {
+                        nextPage.dataset.status = "active";
+                        activeIndex = nextIndex;
+                    });
+                }
+            }
+            buttons[0].dataset.currentpage = nextIndex;
+            buttons[1].dataset.currentpage = nextIndex;
+            const bar = document.querySelector(".horizontalBar");
+            const newBarWidth = nextIndex / (pages.length - 1) * 100;
+            bar.style.width = newBarWidth + "%";
+            setLocation();
+        };
+
+        const openAbout = (tab) => {
+            const buttons = document.getElementsByClassName("aboutButtons");
+            const dropdowns = document.getElementsByClassName("about-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+                if (dropdowns[i].classList.contains('show-about-content')) {
+                    buttons[i].classList.remove("buttonActive");
+                    dropdowns[i].classList.remove('show-about-content');
+                }
+            }
+            const tabNumber = tab.getAttribute("data-about-number");
+            buttons[tabNumber - 1].classList.toggle("buttonActive");
+            dropdowns[tabNumber - 1].classList.toggle("show-about-content");
+        }
+
+        const openExp = (tab) => {
+            const buttons = document.getElementsByClassName("expButtons");
+            const dropdowns = document.getElementsByClassName("exp-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+                if (dropdowns[i].classList.contains('show-exp-content')) {
+                    buttons[i].classList.remove("buttonActive");
+                    dropdowns[i].classList.remove('show-exp-content');
+                }
+            }
+            const tabNumber = tab.getAttribute("data-exp-number");
+            buttons[tabNumber - 1].classList.toggle("buttonActive");
+            dropdowns[tabNumber - 1].classList.toggle("show-exp-content");
+        }
+
+        const openMe = (tab) => {
+            const buttons = document.getElementsByClassName("meButtons");
+            const dropdowns = document.getElementsByClassName("me-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+                if (dropdowns[i].classList.contains('show-me-content')) {
+                    buttons[i].classList.remove("buttonActive");
+                    dropdowns[i].classList.remove('show-me-content');
+                }
+                if (i == 2) {
+                    dropdowns[i].style.display = "none";
+                }
+            }
+            const tabNumber = tab.getAttribute("data-tab-number");
+            buttons[tabNumber].classList.toggle("buttonActive");
+            dropdowns[tabNumber].classList.toggle("show-me-content");
+            if (tabNumber == 2) {
+                dropdowns[tabNumber].style.display = "grid";
+            }
+        }
+
+        const photosClick = () => {
+            const photos = document.querySelectorAll(".photographyImages");
+            for (let i = 0; i < photos.length; i++) {
+                if (photos[i].classList.contains('display-photo')) {
+                    photos[i].classList.remove('display-photo');
+                    photos[(i + 1) % photos.length].classList.toggle('display-photo');
+                    break;
+                }
+            }
+
+        }
+        /*
+        const letterEffect = (word) => {
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const originalString = word.innerHTML;
+            let iterations = 0;
+            const interval = setInterval(() => {
+                word.innerText = word.innerText
+                    .split("")
+                    .map((letter, index) => {
+                        if (index < iterations) {
+                            return originalString[index];
+                        }
+                        return letters[Math.floor(Math.random() * 26)]
+                    })
+                    .join("");
+
+                if (iterations >= originalString.length) {
+                    clearInterval(interval);
+                }
+
+                iterations += 1 / 6;
+            }, 20);
+        }
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                console.log(entry);
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                } else {
+                    entry.target.classList.remove("show");
+                }
+            });
+        });
+
+        let hiddenElements = document.querySelectorAll(".hidden");
+        hiddenElements.forEach((el) => observer.observe(el));
+        */
+    </script>
+
+</head>
+<!-- BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY -->
+<body>
+    <!-- Nav bar -->
+    <nav>
+        <div id="nav-home" class="nav-section">
+            <a href="#home" onclick="navClick(this)" data-nav-type="home">
+                <h2>
+                    <span>
+                        TN
+                    </span>
+                </h2>
+            </a>
+        </div>
+        <div id="nav-experience" class="nav-section">
+            <a href="#about" onclick="navClick(this)" data-nav-type="about">
+                <h4>
+                    About
+                </h4>
+            </a>
+            <a href="#experience" onclick="navClick(this)" data-nav-type="experience">
+                <h4>
+                    Experience
+                </h4>
+            </a>
+            <a href="#me" onclick="navClick(this)" data-nav-type="me">
+                <h4>
+                    Me
+                </h4>
+            </a>
+        </div>
+        <div id="hamburgerIcon" class="nav-section">
+            <div class="hamburgerCircle" id="hamburgerCircle"></div>
+            <a href="javascript:void(0)" onclick="openNav()">
+                <i class="bi bi-list"></i>
+            </a>
+        </div>
+        <div id="nav-space" class="nav-section">
+            <h5>
+                Visiting:
+            </h5>
+            <h1 class="you-are-here">
+                <span class="no-select">
+                    HOME
+                </span>
+            </h1>
+        </div>
+    </nav>
+    <!-- Horizontal growing bar -->
+    <div class="horizontalBar"></div>
+    <!-- Hamburger menu for small screens -->
+    <div class="hamburgerMenu">
+        <a href="#home" onclick="navClick(this)" data-nav-type="home" data-hamburger="hamburger" class="hamburgerMenuItems">
+            <h4>
+                Home
+            </h4>
+        </a>
+        <a href="#about" onclick="navClick(this)" data-nav-type="about" data-hamburger="hamburger" class="hamburgerMenuItems">
+            <h4>
+                About
+            </h4>
+        </a>
+        <a href="#experience" onclick="navClick(this)" data-nav-type="experience" data-hamburger="hamburger" class="hamburgerMenuItems">
+            <h4>
+                Experience
+            </h4>
+        </a>
+        <a href="./ThienLamVoResume.pdf" target="_blank" data-hamburger="hamburger" class="hamburgerMenuItems">
+
+            <h4>
+                Resume
+            </h4>
+        </a>
+        <a href="#me" onclick="navClick(this)" data-nav-type="me" data-hamburger="hamburger" class="hamburgerMenuItems">
+            <h4>
+                Me
+            </h4>
+        </a>
+    </div>
+    <!-- Main content section -->
+    <main>
+        <section data-index="0" data-status="active">
+            <div id="mainPage1">
+                <img id="cover-image" src="./images/main.jpg" alt="Image of Thien-Lam Vo" />
+                <h1 id="introduction">I'm Thien-Lam Vo/TN.</h1>
+                <p id="welcome">Welcome to my website!</p>
+            </div>
+        </section>
+        <section data-index="1" data-status="inactive">
+            <div id="mainPage2">
+                <button onclick="openAbout(this)" class="aboutButtons buttonActive" id="aboutButton1" data-about-number="1">
+                    Background
+                </button>
+                <div id="openDropdown1" class="about-content show-about-content">
+                    <p>
+                        I am a first-gen student, a fact I am proud of, and my parents worked hard to make sure I had what I needed to prosper.
+                    </p>
+                    <p>
+                        My start to computer science/engineering in high school was rocky to say the least, but I always had the thought to try it again.
+                    </p>
+                    <p>
+                        Entering VT Engineering, I decided why not computer engineering? That was a choice.
+                        As a VT CPE alum now, I learned and connected my love for problem-solving with programming!
+                    </p>
+                </div>
+                <button onclick="openAbout(this)" class="aboutButtons" id="aboutButton2" data-about-number="2">
+                    Drive
+                </button>
+                <div id="openDropdown2" class="about-content">
+                    <p>
+                        I want to be able to help people and give back for the many blessings I have had in my life.
+                    </p>
+                    <p>
+                        Whether freshmen and sophomores I met through SASE or my littles/mentees in student orgs, I enjoy assisting others which in turn helps me grow.
+                    </p>
+                    <p>
+                        My goal is to improve my skills to be able to give back, teach others, and promote a community of growth.
+                        Everyone has to navigate life, so why not do it together?
+                    </p>
+                </div>
+                <button onclick="openAbout(this)" class="aboutButtons" id="aboutButton3" data-about-number="3">
+                    Leadership
+                </button>
+                <div id="openDropdown3" class="about-content">
+                    <p>
+                        I think leadership is a great learning lesson for everyone to have to experience at some point of their lives.
+                    </p>
+                    <p>
+                        SASE and Boy Scouts gave me opportunities to lead groups of people and have valuable life lessons about my own character and others. It gave me the confidence to talk
+                    </p>
+                    <p>
+                        My aspiration is to have a leadership position to be able to guide/teach others.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section data-index="2" data-status="inactive">
+            <div id="mainPage3">
+                <button onclick="openExp(this)" class="expButtons buttonActive" id="expButton1" data-exp-number="1">
+                    Classes
+                </button>
+                <div id="expDropdown1" class="exp-content show-exp-content">
+                    <ul>
+                        <li>Applied Software Design</li>
+                        <li>Video Game Design</li>
+                        <li>AI and Engineering Applications</li>
+                        <li>Computer Systems</li>
+                        <li>Network Application Design</li>
+                        <li>Computer and Network Security</li>
+                        <li>Data Structures & Algorithms</li>
+                        <li>Computer Organization & Architecture</li>
+                    </ul>
+                </div>
+                <button onclick="openExp(this)" class="expButtons" id="expButton2" data-exp-number="2">
+                    Internship
+                </button>
+                <div id="expDropdown2" class="exp-content">
+                    <p>CACI Software Developer Intern</p>
+                    <p>Created Python program converting XML data to formatted .geojson and .csv files to be used in ArcGIS' program map for quicker technical support across the U.S.</p>
+                    <p>Developed documentation for said Python program and led presentation displaying progress and overall work during internship</p>
+                </div>
+                <button onclick="openExp(this)" class="expButtons" id="expButton3" data-exp-number="3">
+                    Other
+                </button>
+                <div id="expDropdown3" class="exp-content">
+                    <p>
+                        Harvard's CS50/CS50 Web Development
+                    </p>
+                    <p>
+                        Worked in C, Python, SQL, and database management
+                    </p>
+                    <p>Implemented Django websites imitating Wikipedia manipulating articles and an airline website with tickets and personnel management</p>
+                    <p>Implemented photo filters with pixel manipulations and accessing a word dictionary quickly with a hash map</p>
+                </div>
+            </div>
+        </section>
+        <section data-index="3" data-status="inactive">
+            <div id="mainPage4">
+                <button onclick="openMe(this)" class="meButtons" id="meButton1" data-tab-number="0">
+                    Animals
+                </button>
+                <button onclick="openMe(this)" class="meButtons" id="meButton2" data-tab-number="1">
+                    Game
+                </button>
+                <button onclick="openMe(this)" class="meButtons buttonActive" id="meButton3" data-tab-number="2">
+                    Photos
+                </button>
+                <button onclick="openMe(this)" class="meButtons" id="meButton4" data-tab-number="3">
+                    Sports
+                </button>
+                <div id="meDropdown1" class="me-content">
+                    <p>I love animals!</p>
+                    <p>Nothing against cats, but dogs are superior.</p>
+                    <p>Huskies, Samoyeds, German Shepherds, Golden Retrievers, I'm happy to meet any dogs and cats.</p>
+                    <p>Please show me pictures of your pets or on Zoom whatever species it is!</p>
+                </div>
+                <div id="meDropdown2" class="me-content">
+                    <p>Games can promote critical thinking and strategy building which I love.</p>
+                    <p>Primarily on PC from League to SC2 to Stardew and other genres</p>
+                    <p>Cannot forget the board games such as Betrayal, Gloomhaven, Unstable Unicorns, and Terraforming Mars</p>
+                    <p>I love competition and teamwork, so I'm up for any game!</p>
+                </div>
+                <div id="meDropdown3" class="me-content show-me-content">
+                    <div class="photo-caption">
+                        <p>I am the person to always get at least a picture or video taken to commemorate the moment.</p>
+                        <p>It's a habit I think I got from my Dad and Grandpa.</p>
+                        <p>Feel feel to click through the photos!</p>
+                    </div>
+                    <div class="photo-gallery" onclick="photosClick()">
+                        <img class="photographyImages display-photo" src="./images/img1.JPG" data-photo-index="0" data-status="active">
+                        <img class="photographyImages" src="./images/img2.JPG" data-photo-index="1" data-status="inactive">
+                        <img class="photographyImages" src="./images/img3.JPG" data-photo-index="2" data-status="inactive">
+                        <img class="photographyImages" src="./images/img4.JPG" data-photo-index="3" data-status="inactive">
+                        <img class="photographyImages" src="./images/img5.JPG" data-photo-index="4" data-status="inactive">
+                        <img class="photographyImages" src="./images/img6.JPG" data-photo-index="5" data-status="inactive">
+                        <img class="photographyImages" src="./images/img7.JPG" data-photo-index="6" data-status="inactive">
+                        <img class="photographyImages" src="./images/img8.JPG" data-photo-index="7" data-status="inactive">
+                    </div>
+                </div>
+                <div id="meDropdown4" class="me-content">
+                    <p>I enjoy football the most, but I will normally know what's going on in track/field and basketball also!</p>
+                    <p>
+                        NFL: Arizona Cardinals (Things could be worse)
+                    </p>
+                    <p>
+                        College Football: Michigan State Spartans (Not sorry Michigan)
+                    </p>
+                    <p>
+                        NBA: Wherever Jimmy Butler goes
+                    </p>
+                    <p>
+                        MLB: St. Louis Cardinals (Why not just follow the team with the same name)
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-section sectionLeft page-section">
+            <button type="button" onclick="handleButtons(this)" data-currentpage="0" data-direction="left">
+                <i class="bi bi-file-arrow-down" style="transform: rotate(90deg)"></i>
+            </button>
+        </div>
+        <div class="footer-section sectionFooter page-section">
+            <h4>
+                thienlamvo@vt.edu&nbsp;|&nbsp;<a href="./ThienLamVoResume.pdf" target=”_blank”>resume</a>
+            </h4>
+        </div>
+        <div class="footer-section sectionRight page-section">
+            <button type="button" onclick="handleButtons(this)" data-currentpage="0" data-direction="right">
+                <i class="bi bi-file-arrow-down" style="transform: rotate(-90deg)"></i>
+            </button>
+        </div>
+    </footer>
+</body>
+<!--
+<section class="hidden">
+    <h1>Hi</h1>
+    <h1>Banger opening</h1>
+    <p>Banger hook</p>
+</section>
+
+<section class="hidden">
+    <h2>What you want to know</h2>
+    <p>
+        Blah
+        Blah
+    </p>
+</section>
+
+<section class="hidden">
+    <h2>Why are you here</h2>
+    <p>
+        Hire
+        Me
+    </p>
+</section>
+<section>
+    <div class="logos">
+        <div class="logo hidden">
+            <img src="https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg">
+        </div>
+        <div class="logo hidden">
+            <img src="https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg">
+        </div>
+        <div class="logo hidden">
+            <img src="https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg">
+        </div>
+        <div class="logo hidden">
+            <img src="https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg">
+        </div>
+    </div>
+</section>
+-->
+
+</html>
