@@ -726,58 +726,6 @@
                 font-size: 8rem;
             }
         }
-        /*
-        section {
-            display: grid;
-            place-items: center;
-            align-content: center;
-            min-height: 100vh;
-        }
-
-        .logos {
-            display: flex;
-        }
-
-        .logo {
-            border-radius: 10%;
-            max-height: 20vh;
-            max-width: 20vh;
-            padding: 1rem;
-            margin: 0 0.5rem;
-        }
-
-        .logo > img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            border-radius: inherit;
-        }
-
-        .logo:nth-child(2) {
-            transition-delay: 200ms;
-        }
-
-        .logo:nth-child(3) {
-            transition-delay: 400ms;
-        }
-
-        .logo:nth-child(4) {
-            transition-delay: 600ms;
-        }
-
-        .hidden {
-            opacity: 0;
-            filter: blur(5px);
-            transform: translateX(-100%);
-            transition: all 1s;
-        }
-
-        .show {
-            opacity: 1;
-            filter: blur(0);
-            transform: translateX(0);
-        }
-        */
     </style>
 
     <!-- JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT -->
@@ -960,43 +908,6 @@
             }
 
         }
-        /*
-        const letterEffect = (word) => {
-            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            const originalString = word.innerHTML;
-            let iterations = 0;
-            const interval = setInterval(() => {
-                word.innerText = word.innerText
-                    .split("")
-                    .map((letter, index) => {
-                        if (index < iterations) {
-                            return originalString[index];
-                        }
-                        return letters[Math.floor(Math.random() * 26)]
-                    })
-                    .join("");
-
-                if (iterations >= originalString.length) {
-                    clearInterval(interval);
-                }
-
-                iterations += 1 / 6;
-            }, 20);
-        }
-        let observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                console.log(entry);
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show");
-                } else {
-                    entry.target.classList.remove("show");
-                }
-            });
-        });
-
-        let hiddenElements = document.querySelectorAll(".hidden");
-        hiddenElements.forEach((el) => observer.observe(el));
-        */
     </script>
 
 </head>
@@ -1254,44 +1165,4 @@
         </div>
     </footer>
 </body>
-<!--
-<section class="hidden">
-    <h1>Hi</h1>
-    <h1>Banger opening</h1>
-    <p>Banger hook</p>
-</section>
-
-<section class="hidden">
-    <h2>What you want to know</h2>
-    <p>
-        Blah
-        Blah
-    </p>
-</section>
-
-<section class="hidden">
-    <h2>Why are you here</h2>
-    <p>
-        Hire
-        Me
-    </p>
-</section>
-<section>
-    <div class="logos">
-        <div class="logo hidden">
-            <img src="https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg">
-        </div>
-        <div class="logo hidden">
-            <img src="https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg">
-        </div>
-        <div class="logo hidden">
-            <img src="https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg">
-        </div>
-        <div class="logo hidden">
-            <img src="https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg">
-        </div>
-    </div>
-</section>
--->
-
 </html>
